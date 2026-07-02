@@ -1,26 +1,22 @@
-// =====================================
-// Firebase Setup
-// Replace this placeholder with your own Firebase project config.
-// =====================================
+// Firebase v10 (Module)
 
-// Example when you are ready:
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-// import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-// import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getStorage } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
-// const firebaseConfig = {
-//     apiKey: "YOUR_API_KEY",
-//     authDomain: "YOUR_PROJECT.firebaseapp.com",
-//     projectId: "YOUR_PROJECT_ID",
-//     storageBucket: "YOUR_PROJECT.appspot.com",
-//     messagingSenderId: "YOUR_SENDER_ID",
-//     appId: "YOUR_APP_ID"
-// };
+const firebaseConfig = {
+    apiKey: "AIzaSyDudHZ479v5Rs3IYsu1bII7X3jmU3y4s9c",
+    authDomain: "mayuraonline.firebaseapp.com",
+    projectId: "mayuraonline",
+    storageBucket: "mayuraonline.firebasestorage.app",
+    messagingSenderId: "318115105826",
+    appId: "1:318115105826:web:baf53afdcc1137303e8e7b",
+    measurementId: "G-13MC4Y0ZM6"
+};
 
-// const app = initializeApp(firebaseConfig);
-// const auth = getAuth(app);
-// const db = getFirestore(app);
+const app = initializeApp(firebaseConfig);
 
-// Temporary demo mode flag.
-// The current admin page uses localStorage until Firebase is connected.
-const FIREBASE_DEMO_MODE = true;
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const storage = getStorage(app);
