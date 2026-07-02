@@ -4,7 +4,7 @@
 // =====================================
 
 const CONFIG = {
-    storeName: "Style Haven",
+    storeName: "Mayura",
 
     // WhatsApp number in international format.
     // Example: 919876543210
