@@ -4,173 +4,157 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details | Style Haven</title>
-
+    <meta name="description" content="View product details, available sizes, colors, fabric, and order from Style Haven through WhatsApp.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Top Bar -->
     <div class="top-bar">
         Free Shipping on Selected Orders | Cash on Delivery Available
     </div>
 
-    <!-- Navbar -->
     <header class="navbar">
-
-        <a href="index.html" class="logo">
+        <a href="index.html" class="logo" aria-label="Style Haven Home">
             STYLE <span>HAVEN</span>
         </a>
 
-        <nav id="navMenu">
+        <nav id="navMenu" aria-label="Main navigation">
             <a href="index.html">Home</a>
-            <a href="products.html">Products</a>
+            <a href="wishlist.html">Wishlist <span id="wishlistCount" class="wishlist-count">0</span></a>
+            <a href="products.html" class="active">Products</a>
             <a href="index.html#collections">Collections</a>
             <a href="index.html#about">About</a>
             <a href="index.html#contact">Contact</a>
         </nav>
 
-        <button id="menuBtn" class="menu-btn">
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
             ☰
         </button>
-
     </header>
 
-    <!-- Breadcrumb -->
+    <main>
+        <section class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span>/</span>
+            <a href="products.html">Products</a>
+            <span>/</span>
+            <span id="breadcrumbName">Product</span>
+        </section>
 
-    <section class="breadcrumb">
+        <section class="fg-product-layout">
+            <div class="fg-product-media">
+                <div class="fg-main-image">
+                    <img id="productImage" src="" alt="Selected product image">
+                </div>
 
-        <a href="index.html">Home</a>
-
-        /
-
-        <a href="products.html">Products</a>
-
-        /
-
-        <span id="breadcrumbName">Product</span>
-
-    </section>
-
-    <!-- Product Details -->
-
-    <section class="product-details">
-
-        <!-- Image -->
-
-        <div class="product-gallery">
-
-            <img
-                id="productImage"
-                src=""
-                alt="Product Image">
-
-        </div>
-
-        <!-- Details -->
-
-        <div class="product-content">
-
-            <span
-                class="category-badge"
-                id="productCategory">
-            </span>
-
-            <h1 id="productName"></h1>
-
-            <span
-                class="price"
-                id="productPrice">
-            </span>
-
-            <p id="productDescription"></p>
-
-            <hr>
-
-            <div class="info-row">
-
-                <strong>Fabric :</strong>
-
-                <span id="productFabric"></span>
-
+                <div class="fg-thumbnail-grid" id="productThumbs"></div>
             </div>
 
-            <div class="info-row">
+            <aside class="fg-product-summary">
+                <span class="category-badge" id="productCategory"></span>
 
-                <strong>Availability :</strong>
+                <h1 id="productName"></h1>
 
-                <span class="stock">
-                    In Stock
-                </span>
+                <p class="fg-subtitle" id="productSubtitle"></p>
 
+                <span class="price detail-price" id="productPrice"></span>
+
+                <p class="tax-note">Inclusive of all taxes. Shipping calculated at checkout.</p>
+
+                <button class="detail-wishlist-btn" id="detailWishlistBtn" type="button">
+                    ♡ Add to Wishlist
+                </button>
+
+                <div class="low-stock">Only a few left. Order soon!</div>
+
+                <div class="fg-option-block">
+                    <div class="option-heading">
+                        <h3>Select Size</h3>
+                        <button class="size-guide-btn" type="button">Size Guide</button>
+                    </div>
+                    <div id="sizeContainer" class="pill-row"></div>
+                </div>
+
+                <div class="fg-option-block">
+                    <h3>Available Colors</h3>
+                    <div id="colorContainer" class="pill-row"></div>
+                </div>
+
+                <div class="fg-actions">
+                    <a href="#" id="orderBtn" class="btn primary" target="_blank" rel="noopener">
+                        Order on WhatsApp
+                    </a>
+                    <a href="products.html" class="btn secondary">Continue Shopping</a>
+                </div>
+
+                <div class="fg-service-notes">
+                    <p>✓ Easy WhatsApp Ordering</p>
+                    <p>✓ Size Assistance Available</p>
+                    <p>✓ Usual Dispatch Time: 5-7 Days</p>
+                </div>
+            </aside>
+        </section>
+
+        <section class="premium-product-details">
+            <h2>Product Details</h2>
+
+            <p class="premium-detail-description" id="productDescription"></p>
+
+            <div class="premium-detail-table">
+                <div>
+                    <strong>Display Color</strong>
+                    <span id="productDisplayColor"></span>
+                </div>
+
+                <div>
+                    <strong>Wash Care</strong>
+                    <span>Gentle Hand Wash</span>
+                </div>
+
+                <div>
+                    <strong>Composition</strong>
+                    <span id="productComposition"></span>
+                </div>
+
+                <div>
+                    <strong>Print Technique</strong>
+                    <span>Digital</span>
+                </div>
             </div>
 
-            <!-- Sizes -->
+            <div class="premium-disclaimer">
+                <p>
+                    <strong>DISCLAIMER:</strong>
+                    Garments crafted using traditional dyeing and printing techniques, particularly in darker or richly pigmented shades, may transfer colour onto light-coloured fabrics, upholstery, or other surfaces. This is an inherent characteristic of richly dyed textiles and may occur when exposed to moisture, heat, or friction.
+                </p>
 
-            <div class="sizes">
+                <p>
+                    We recommend washing dark-coloured garments separately in cold water only and avoiding contact with light surfaces, as rubbing may result in colour transfer.
+                </p>
 
-                <h3>Available Sizes</h3>
+                <p>
+                    Subtle variations in print, shade, and stitching are inherent to the handmade process and are not defects.
+                </p>
 
-                <div id="sizeContainer"></div>
-
+                <p>
+                    Product colours may vary slightly depending on lighting, screen settings, photography conditions, and background tones.
+                </p>
             </div>
+        </section>
 
-            <!-- Colors -->
-
-            <div class="colors">
-
-                <h3>Available Colors</h3>
-
-                <div id="colorContainer"></div>
-
-            </div>
-
-            <br>
-
-            <a
-                href="#"
-                id="orderBtn"
-                class="btn primary"
-                target="_blank">
-                Order on WhatsApp
-            </a>
-
-        </div>
-
-    </section>
-
-    <!-- Related Products -->
-
-    <section class="section light">
-
-        <p class="section-label">
-            Similar Products
-        </p>
-
-        <h2>
-            You May Also Like
-        </h2>
-
-        <div
-            class="product-grid"
-            id="relatedProducts">
-        </div>
-
-    </section>
-
-    <!-- Footer -->
+        <section class="section light">
+            <p class="section-label">Similar Products</p>
+            <h2>You May Also Like</h2>
+            <div class="product-grid" id="relatedProducts"></div>
+        </section>
+    </main>
 
     <footer>
-
-        <p>
-            © 2026 Style Haven. All rights reserved.
-        </p>
-
+        <p>© 2026 Style Haven. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript -->
-
+    <script src="config.js"></script>
     <script src="script.js"></script>
     <script src="product.js"></script>
-
 </body>
 </html>

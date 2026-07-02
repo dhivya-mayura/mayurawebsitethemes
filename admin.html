@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Style Haven</title>
+    <meta name="description" content="Style Haven admin dashboard for managing products.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="top-bar">
+        Admin Dashboard | Style Haven
+    </div>
+
+    <header class="navbar">
+        <a href="index.html" class="logo">STYLE <span>HAVEN</span></a>
+
+        <nav id="navMenu" aria-label="Admin navigation">
+            <a href="admin.html" class="active">Dashboard</a>
+            <a href="products.html">View Store</a>
+            <a href="#" id="logoutBtn">Logout</a>
+        </nav>
+
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+    </header>
+
+    <main>
+        <section class="admin-hero">
+            <div>
+                <p class="section-label">Product Management</p>
+                <h1>Admin Dashboard</h1>
+                <p>Add, edit, and manage Style Haven products.</p>
+            </div>
+        </section>
+
+        <section class="admin-layout">
+            <form id="productForm" class="admin-card">
+                <h2>Add / Edit Product</h2>
+
+                <input type="hidden" id="productId">
+
+                <label>
+                    Product Name
+                    <input type="text" id="adminProductName" required>
+                </label>
+
+                <label>
+                    Category
+                    <select id="adminProductCategory" required>
+                        <option value="Men">Men</option>
+                        <option value="Women">Women</option>
+                        <option value="Kids">Kids</option>
+                        <option value="Ethnic Wear">Ethnic Wear</option>
+                    </select>
+                </label>
+
+                <label>
+                    Price
+                    <input type="text" id="adminProductPrice" placeholder="₹1,299" required>
+                </label>
+
+                <label>
+                    Image URL
+                    <input type="url" id="adminProductImage" required>
+                </label>
+
+                <label>
+                    Short Description
+                    <textarea id="adminProductShort" rows="2" required></textarea>
+                </label>
+
+                <label>
+                    Full Description
+                    <textarea id="adminProductDescription" rows="4" required></textarea>
+                </label>
+
+                <label>
+                    Fabric / Composition
+                    <input type="text" id="adminProductFabric" required>
+                </label>
+
+                <label>
+                    Sizes (comma separated)
+                    <input type="text" id="adminProductSizes" placeholder="S, M, L, XL" required>
+                </label>
+
+                <label>
+                    Colors (comma separated)
+                    <input type="text" id="adminProductColors" placeholder="Red, Green, Blue" required>
+                </label>
+
+                <div class="admin-actions">
+                    <button class="btn primary" type="submit">Save Product</button>
+                    <button class="btn secondary" type="button" id="resetFormBtn">Reset</button>
+                </div>
+
+                <p id="adminMessage" class="form-message"></p>
+            </form>
+
+            <section class="admin-card">
+                <h2>Products</h2>
+                <div id="adminProductList" class="admin-product-list"></div>
+            </section>
+        </section>
+    </main>
+
+    <script src="config.js"></script>
+    <script src="firebase.js"></script>
+    <script src="script.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

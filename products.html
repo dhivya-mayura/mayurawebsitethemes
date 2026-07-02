@@ -3,153 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details | Style Haven</title>
-
+    <title>Products | Style Haven</title>
+    <meta name="description" content="Browse Style Haven clothing products by category, including men, women, kids, and ethnic wear.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Top Bar -->
     <div class="top-bar">
-        Free shipping on selected orders | Cash on Delivery Available
+        Free Shipping on Selected Orders | Cash on Delivery Available
     </div>
 
-    <!-- Navbar -->
     <header class="navbar">
-
-        <a href="index.html" class="logo">
+        <a href="index.html" class="logo" aria-label="Style Haven Home">
             STYLE <span>HAVEN</span>
         </a>
 
-        <nav id="navMenu">
+        <nav id="navMenu" aria-label="Main navigation">
             <a href="index.html">Home</a>
-            <a href="products.html">Products</a>
+            <a href="wishlist.html">Wishlist <span id="wishlistCount" class="wishlist-count">0</span></a>
+            <a href="products.html" class="active">Products</a>
             <a href="index.html#collections">Collections</a>
             <a href="index.html#about">About</a>
             <a href="index.html#contact">Contact</a>
         </nav>
 
-        <button class="menu-btn" id="menuBtn">
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
             ☰
         </button>
-
     </header>
 
-    <!-- Breadcrumb -->
-    <section class="breadcrumb">
-        <a href="index.html">Home</a>
-        /
-        <a href="products.html">Products</a>
-        /
-        <span id="breadcrumbName">Product</span>
-    </section>
+    <main>
+        <section class="page-hero">
+            <p class="section-label">Our Collection</p>
+            <h1>Shop Products</h1>
+            <p>Find your favorite styles and order quickly through WhatsApp.</p>
+        </section>
 
-    <!-- Product Details -->
-    <section class="product-details">
-
-        <!-- Image -->
-        <div class="product-gallery">
-
-            <img
-                id="productImage"
-                src=""
-                alt="Product Image"
-            >
-
-        </div>
-
-        <!-- Information -->
-        <div class="product-content">
-
-            <p class="category-badge" id="productCategory"></p>
-
-            <h1 id="productName"></h1>
-
-            <h2 class="price" id="productPrice"></h2>
-
-            <p id="productDescription"></p>
-
-            <hr>
-
-            <div class="info-row">
-                <strong>Fabric :</strong>
-                <span id="productFabric"></span>
+        <section class="section">
+            <div class="filter-bar" id="filterBar" aria-label="Product category filters">
+                <button class="filter-btn active" data-category="All">All</button>
+                <button class="filter-btn" data-category="Men">Men</button>
+                <button class="filter-btn" data-category="Women">Women</button>
+                <button class="filter-btn" data-category="Kids">Kids</button>
+                <button class="filter-btn" data-category="Ethnic Wear">Ethnic Wear</button>
             </div>
 
-            <div class="info-row">
-                <strong>Availability :</strong>
-                <span class="stock">In Stock</span>
-            </div>
+            <div class="product-grid" id="productGrid"></div>
+        </section>
+    </main>
 
-            <div class="sizes">
-
-                <h3>Available Sizes</h3>
-
-                <div id="sizeContainer">
-
-                </div>
-
-            </div>
-
-            <div class="colors">
-
-                <h3>Available Colors</h3>
-
-                <div id="colorContainer">
-
-                </div>
-
-            </div>
-
-            <br>
-
-            <a
-                href="#"
-                class="btn primary"
-                id="orderBtn"
-                target="_blank"
-            >
-                Order on WhatsApp
-            </a>
-
-        </div>
-
-    </section>
-
-    <!-- Related Products -->
-    <section class="section light">
-
-        <p class="section-label">
-            Similar Products
-        </p>
-
-        <h2>
-            You May Also Like
-        </h2>
-
-        <div
-            class="product-grid"
-            id="relatedProducts"
-        >
-
-        </div>
-
-    </section>
-
-    <!-- Footer -->
     <footer>
-
-        <p>
-            © 2026 Style Haven. All rights reserved.
-        </p>
-
+        <p>© 2026 Style Haven. All rights reserved.</p>
     </footer>
 
-    <!-- Existing Script -->
+    <script src="config.js"></script>
     <script src="script.js"></script>
-
-    <!-- Product Details Script -->
-    <script src="product.js"></script>
-
 </body>
 </html>

@@ -1,224 +1,134 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Style Haven | Clothing Collection</title>
-
+    <title>Style Haven | Modern Clothing Collection</title>
+    <meta name="description" content="Shop modern, comfortable, and stylish clothing for men, women, kids, and ethnic wear at Style Haven.">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- Top Bar -->
     <div class="top-bar">
         Free Shipping on Selected Orders | Cash on Delivery Available
     </div>
 
-    <!-- Header -->
     <header class="navbar">
-
-        <a href="index.html" class="logo">
+        <a href="index.html" class="logo" aria-label="Style Haven Home">
             STYLE <span>HAVEN</span>
         </a>
 
-        <nav id="navMenu">
-            <a href="#home">Home</a>
-            <a href="#collections">Collections</a>
+        <nav id="navMenu" aria-label="Main navigation">
+            <a href="index.html" class="active">Home</a>
+            <a href="wishlist.html">Wishlist <span id="wishlistCount" class="wishlist-count">0</span></a>
             <a href="products.html">Products</a>
+            <a href="#collections">Collections</a>
             <a href="#new-arrivals">New Arrivals</a>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
         </nav>
 
-        <button class="menu-btn" id="menuBtn" aria-label="Menu">
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
             ☰
         </button>
-
     </header>
 
-    <!-- Hero -->
     <main>
-
         <section class="hero" id="home">
-
             <div class="hero-content">
-
-                <p class="eyebrow">
-                    New Collection 2026
-                </p>
-
-                <h1>
-                    Elevate Your Everyday Style
-                </h1>
-
+                <p class="eyebrow">New Collection 2026</p>
+                <h1>Elevate Your Everyday Style</h1>
                 <p class="hero-text">
-                    Discover modern, comfortable, and stylish clothing
-                    designed for every occasion.
+                    Discover modern, comfortable, and stylish clothing designed for every occasion.
                 </p>
 
                 <div class="hero-actions">
-
-                    <a href="products.html" class="btn primary">
-                        Shop Now
-                    </a>
-
-                    <a href="#collections" class="btn secondary">
-                        Explore Collections
-                    </a>
-
+                    <a href="products.html" class="btn primary">Shop Now</a>
+                    <a href="#collections" class="btn secondary">Explore Collections</a>
                 </div>
-
             </div>
-
         </section>
 
-        <!-- Features -->
-
-        <section class="features">
-
+        <section class="features" aria-label="Store benefits">
             <article>
+                <div class="feature-icon" aria-hidden="true">🚚</div>
                 <h3>Free Shipping</h3>
                 <p>On selected orders</p>
             </article>
 
             <article>
+                <div class="feature-icon" aria-hidden="true">✨</div>
                 <h3>Premium Quality</h3>
-                <p>High quality fabrics</p>
+                <p>Carefully selected fabrics</p>
             </article>
 
             <article>
+                <div class="feature-icon" aria-hidden="true">💬</div>
                 <h3>WhatsApp Ordering</h3>
-                <p>Quick & Easy Ordering</p>
+                <p>Quick and easy checkout</p>
             </article>
-
         </section>
-
-        <!-- Categories -->
 
         <section class="section" id="collections">
-
-            <p class="section-label">
-                Browse Our Range
-            </p>
-
-            <h2>
-                Shop by Category
-            </h2>
+            <p class="section-label">Browse Our Range</p>
+            <h2>Shop by Category</h2>
 
             <div class="category-grid">
-
-                <article class="category-card men">
+                <a class="category-card men" href="products.html?category=Men" aria-label="Shop Men collection">
                     <h3>Men</h3>
-                </article>
+                </a>
 
-                <article class="category-card women">
+                <a class="category-card women" href="products.html?category=Women" aria-label="Shop Women collection">
                     <h3>Women</h3>
-                </article>
+                </a>
 
-                <article class="category-card kids">
+                <a class="category-card kids" href="products.html?category=Kids" aria-label="Shop Kids collection">
                     <h3>Kids</h3>
-                </article>
+                </a>
 
-                <article class="category-card ethnic">
+                <a class="category-card ethnic" href="products.html?category=Ethnic Wear" aria-label="Shop Ethnic Wear collection">
                     <h3>Ethnic Wear</h3>
-                </article>
-
+                </a>
             </div>
-
         </section>
-
-        <!-- New Arrivals -->
 
         <section class="section light" id="new-arrivals">
+            <p class="section-label">Fresh Styles</p>
+            <h2>New Arrivals</h2>
 
-            <p class="section-label">
-                Fresh Styles
-            </p>
-
-            <h2>
-                New Arrivals
-            </h2>
-
-            <!-- Products loaded automatically from script.js -->
-            <div
-                class="product-grid"
-                id="productGrid">
-            </div>
-
+            <div class="product-grid" id="newArrivalsGrid"></div>
         </section>
-
-        <!-- About -->
 
         <section class="about" id="about">
-
             <div>
-
-                <p class="section-label">
-                    About Us
-                </p>
-
-                <h2>
-                    Fashion For Every You
-                </h2>
-
+                <p class="section-label">About Us</p>
+                <h2>Fashion For Every You</h2>
                 <p>
-                    Style Haven offers carefully selected clothing
-                    collections that combine comfort, elegance, and
-                    affordability. Whether you're shopping for casual,
-                    festive, or everyday wear, we have something for
-                    everyone.
+                    Style Haven offers carefully selected clothing collections that combine comfort,
+                    elegance, and affordability. Whether you are shopping for casual, festive, or
+                    everyday wear, we have something for everyone.
                 </p>
-
             </div>
-
         </section>
-
-        <!-- Contact -->
 
         <section class="section contact" id="contact">
-
-            <p class="section-label">
-                Contact Us
-            </p>
-
-            <h2>
-                Get In Touch
-            </h2>
-
+            <p class="section-label">Contact Us</p>
+            <h2>Get In Touch</h2>
             <p>
-                Have questions about a product?
-                Click below to chat with us directly on WhatsApp.
+                Have questions about a product? Click below to chat with us directly on WhatsApp.
             </p>
 
-            <a
-                href="#"
-                id="whatsappBtn"
-                class="btn primary"
-                target="_blank">
+            <a href="#" id="whatsappBtn" class="btn primary" target="_blank" rel="noopener">
                 Chat on WhatsApp
             </a>
-
         </section>
-
     </main>
 
-    <!-- Footer -->
-
     <footer>
-
-        <p>
-            © 2026 Style Haven. All rights reserved.
-        </p>
-
+        <p>© 2026 Style Haven. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript -->
-
+    <script src="config.js"></script>
     <script src="script.js"></script>
-
 </body>
-
 </html>

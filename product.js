@@ -2,167 +2,152 @@
 // Product Details Page
 // ================================
 
-// Get product ID from URL
-const params = new URLSearchParams(window.location.search);
-const productId = Number(params.get("id"));
+document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const productId = Number(params.get("id"));
+    const product = products.find(item => item.id === productId);
 
-// Find selected product
-const product = products.find(p => p.id === productId);
+    if (!product) {
+        document.querySelector("main").innerHTML = `
+            <section class="section">
+                <h1>Product Not Found</h1>
+                <p>The product you are looking for does not exist.</p>
+                <br>
+                <a href="products.html" class="btn primary">Back to Products</a>
+            </section>
+        `;
+        return;
+    }
 
-// Redirect if product not found
-if (!product) {
-    document.body.innerHTML = `
-        <section class="section">
-            <h2>Product Not Found</h2>
-            <p>The product you are looking for does not exist.</p>
-            <br>
-            <a href="products.html" class="btn primary">
-                Back to Products
-            </a>
-        </section>
-    `;
-    throw new Error("Product not found");
-}
+    document.title = `${product.name} | Style Haven`;
 
-// ================================
-// Populate Product Details
-// ================================
+    setText("breadcrumbName", product.name);
+    setText("productCategory", product.category);
+    setText("productName", product.name);
+    setText("productSubtitle", product.short);
+    setText("productPrice", product.price);
+    setText("productDescription", product.description);
+    setText("productFabric", product.fabric);
+    setText("productDisplayColor", product.colors.join(", "));
+    setText("productComposition", product.fabric);
 
-document.getElementById("breadcrumbName").textContent = product.name;
-
-document.getElementById("productImage").src = product.image;
-document.getElementById("productImage").alt = product.name;
-
-document.getElementById("productCategory").textContent = product.category;
-
-document.getElementById("productName").textContent = product.name;
-
-document.getElementById("productPrice").textContent = product.price;
-
-document.getElementById("productDescription").textContent =
-    product.description;
-
-document.getElementById("productFabric").textContent =
-    product.fabric;
-
-
-// ================================
-// Sizes
-// ================================
-
-const sizeContainer = document.getElementById("sizeContainer");
-
-sizeContainer.innerHTML = "";
-
-product.sizes.forEach(size => {
-
-    sizeContainer.innerHTML += `
-        <span class="size-badge">
-            ${size}
-        </span>
-    `;
-
+    setupProductGallery(product);
+    renderProductOptions(product);
+    setupProductActions(product);
+    renderRelatedProducts(product);
 });
 
-
-// ================================
-// Colors
-// ================================
-
-const colorContainer = document.getElementById("colorContainer");
-
-colorContainer.innerHTML = "";
-
-product.colors.forEach(color => {
-
-    colorContainer.innerHTML += `
-        <span class="color-badge">
-            ${color}
-        </span>
-    `;
-
-});
-
-
-// ================================
-// WhatsApp Button
-// ================================
-
-const phoneNumber = "919999999999"; // Replace with your number
-
-const message = `Hi,
-
-I would like to order:
-
-Product: ${product.name}
-Price: ${product.price}
-
-Please let me know the available sizes and delivery details.
-
-Thank you.`;
-
-document.getElementById("orderBtn").href =
-`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
-
-// ================================
-// Related Products
-// ================================
-
-const relatedProducts = document.getElementById("relatedProducts");
-
-const related = products.filter(item =>
-
-    item.category === product.category &&
-    item.id !== product.id
-
-);
-
-if (related.length === 0) {
-
-    relatedProducts.innerHTML = `
-        <p>No related products available.</p>
-    `;
-
+function setText(id, value) {
+    const element = document.getElementById(id);
+    if (element) element.textContent = value;
 }
-else {
 
-    relatedProducts.innerHTML = related.map(item => `
+function setupProductGallery(product) {
+    const productImage = document.getElementById("productImage");
+    const productThumbs = document.getElementById("productThumbs");
 
-        <article class="product-card">
+    const galleryImages = [
+        product.image,
+        product.image,
+        product.image
+    ];
 
-            <a href="product.html?id=${item.id}">
+    if (productImage) {
+        productImage.src = galleryImages[0];
+        productImage.alt = product.name;
+    }
 
-                <img
-                    src="${item.image}"
-                    alt="${item.name}"
-                >
+    if (!productThumbs) return;
 
-            </a>
-
-            <div class="product-info">
-
-                <p>${item.category}</p>
-
-                <h3>${item.name}</h3>
-
-                <span class="price">
-                    ${item.price}
-                </span>
-
-                <br><br>
-
-                <a
-                    href="product.html?id=${item.id}"
-                    class="order-link"
-                >
-                    View Details
-                </a>
-
-            </div>
-
-        </article>
-
+    productThumbs.innerHTML = galleryImages.map((image, index) => `
+        <button class="thumb-btn ${index === 0 ? "active" : ""}" type="button" aria-label="View image ${index + 1}">
+            <img src="${image}" alt="${product.name} view ${index + 1}">
+        </button>
     `).join("");
 
+    productThumbs.querySelectorAll(".thumb-btn").forEach((button, index) => {
+        button.addEventListener("click", () => {
+            productImage.src = galleryImages[index];
+            productThumbs.querySelectorAll(".thumb-btn").forEach(btn => btn.classList.remove("active"));
+            button.classList.add("active");
+        });
+    });
+}
+
+function renderProductOptions(product) {
+    const sizeContainer = document.getElementById("sizeContainer");
+    if (sizeContainer) {
+        sizeContainer.innerHTML = product.sizes
+            .map((size, index) => `
+                <button class="size-badge ${index === 0 ? "selected" : ""}" type="button">
+                    ${size}
+                </button>
+            `)
+            .join("");
+
+        sizeContainer.querySelectorAll(".size-badge").forEach(button => {
+            button.addEventListener("click", () => {
+                sizeContainer.querySelectorAll(".size-badge").forEach(btn => btn.classList.remove("selected"));
+                button.classList.add("selected");
+            });
+        });
+    }
+
+    const colorContainer = document.getElementById("colorContainer");
+    if (colorContainer) {
+        colorContainer.innerHTML = product.colors
+            .map((color, index) => `
+                <button class="color-badge ${index === 0 ? "selected" : ""}" type="button">
+                    ${color}
+                </button>
+            `)
+            .join("");
+
+        colorContainer.querySelectorAll(".color-badge").forEach(button => {
+            button.addEventListener("click", () => {
+                colorContainer.querySelectorAll(".color-badge").forEach(btn => btn.classList.remove("selected"));
+                button.classList.add("selected");
+            });
+        });
+    }
+}
+
+function setupProductActions(product) {
+    const orderBtn = document.getElementById("orderBtn");
+    if (orderBtn) {
+        orderBtn.href = getWhatsAppOrderLink(product);
+    }
+
+    const detailWishlistBtn = document.getElementById("detailWishlistBtn");
+    if (detailWishlistBtn) {
+        updateDetailWishlistButton(product.id);
+
+        detailWishlistBtn.addEventListener("click", () => {
+            toggleWishlist(product.id);
+            updateDetailWishlistButton(product.id);
+        });
+    }
+}
+
+function updateDetailWishlistButton(productId) {
+    const detailWishlistBtn = document.getElementById("detailWishlistBtn");
+    if (!detailWishlistBtn) return;
+
+    const wished = isWishlisted(productId);
+    detailWishlistBtn.classList.toggle("active", wished);
+    detailWishlistBtn.textContent = wished ? "♥ Remove from Wishlist" : "♡ Add to Wishlist";
+}
+
+function renderRelatedProducts(currentProduct) {
+    const relatedProducts = document.getElementById("relatedProducts");
+    if (!relatedProducts) return;
+
+    const related = products
+        .filter(item => item.category === currentProduct.category && item.id !== currentProduct.id);
+
+    relatedProducts.classList.add("related-scroller");
+
+    relatedProducts.innerHTML = related.length
+        ? related.map(productCard).join("")
+        : `<p class="empty-state">No related products available.</p>`;
 }

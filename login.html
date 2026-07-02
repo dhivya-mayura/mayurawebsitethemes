@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Style Haven</title>
+    <meta name="description" content="Style Haven admin login.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="auth-page">
+        <section class="auth-card">
+            <a href="index.html" class="logo auth-logo">STYLE <span>HAVEN</span></a>
+
+            <p class="section-label">Admin Access</p>
+            <h1>Login</h1>
+            <p class="auth-note">Use your admin credentials to manage products.</p>
+
+            <form id="loginForm" class="auth-form">
+                <label>
+                    Email
+                    <input type="email" id="loginEmail" placeholder="admin@example.com" required>
+                </label>
+
+                <label>
+                    Password
+                    <input type="password" id="loginPassword" placeholder="Enter password" required>
+                </label>
+
+                <button class="btn primary" type="submit">Login</button>
+
+                <p id="loginMessage" class="form-message"></p>
+            </form>
+
+            <a href="index.html" class="back-link">← Back to Website</a>
+        </section>
+    </main>
+
+    <script src="firebase.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
