@@ -1,5 +1,5 @@
 // =====================================
-// Style Haven Configuration
+// Mayuraonline Configuration
 // Edit this file only for store settings.
 // =====================================
 
