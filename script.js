@@ -2,7 +2,7 @@
 // Style Haven Main Script
 // ================================
 
-const STORE_PHONE_NUMBER = CONFIG.whatsapp;
+const STORE_PHONE_NUMBER = (typeof CONFIG !== "undefined" && CONFIG.whatsapp) ? CONFIG.whatsapp : "919999999999";
 
 const products = [
     {
@@ -227,7 +227,12 @@ function renderProductsPage() {
         });
     }
 
-    render(selectedCategory);
+    try {
+        render(selectedCategory);
+    } catch (error) {
+        console.error("Unable to render products:", error);
+        grid.innerHTML = `<p class="empty-state">Unable to load products. Please refresh the page.</p>`;
+    }
 }
 
 // ================================
@@ -235,7 +240,13 @@ function renderProductsPage() {
 // ================================
 
 function getWishlist() {
-    return JSON.parse(localStorage.getItem("styleHavenWishlist") || "[]");
+    try {
+        const value = JSON.parse(localStorage.getItem("styleHavenWishlist") || "[]");
+        return Array.isArray(value) ? value.map(Number) : [];
+    } catch (error) {
+        localStorage.removeItem("styleHavenWishlist");
+        return [];
+    }
 }
 
 function saveWishlist(ids) {
