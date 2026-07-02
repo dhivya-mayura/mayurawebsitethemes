@@ -1,56 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Products | Style Haven</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | Style Haven</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="top-bar">
-    Free shipping on selected orders | Cash on delivery available
-  </div>
 
-  <header class="navbar">
-    <a href="index.html" class="logo">STYLE <span>HAVEN</span></a>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        Free shipping on selected orders | Cash on Delivery Available
+    </div>
 
-    <nav id="navMenu">
-      <a href="index.html">Home</a>
-      <a href="index.html#collections">Collections</a>
-      <a href="products.html">Products</a>
-      <a href="index.html#about">About</a>
-      <a href="index.html#contact">Contact</a>
-    </nav>
+    <!-- Navbar -->
+    <header class="navbar">
 
-    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
-  </header>
+        <a href="index.html" class="logo">
+            STYLE <span>HAVEN</span>
+        </a>
 
-  <main>
-    <section class="page-hero">
-      <p class="section-label">Our Collection</p>
-      <h1>Products</h1>
-      <p>Browse our latest clothing styles and order directly through WhatsApp.</p>
+        <nav id="navMenu">
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="index.html#collections">Collections</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+
+        <button class="menu-btn" id="menuBtn">
+            ☰
+        </button>
+
+    </header>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <a href="index.html">Home</a>
+        /
+        <a href="products.html">Products</a>
+        /
+        <span id="breadcrumbName">Product</span>
     </section>
 
+    <!-- Product Details -->
+    <section class="product-details">
+
+        <!-- Image -->
+        <div class="product-gallery">
+
+            <img
+                id="productImage"
+                src=""
+                alt="Product Image"
+            >
+
+        </div>
+
+        <!-- Information -->
+        <div class="product-content">
+
+            <p class="category-badge" id="productCategory"></p>
+
+            <h1 id="productName"></h1>
+
+            <h2 class="price" id="productPrice"></h2>
+
+            <p id="productDescription"></p>
+
+            <hr>
+
+            <div class="info-row">
+                <strong>Fabric :</strong>
+                <span id="productFabric"></span>
+            </div>
+
+            <div class="info-row">
+                <strong>Availability :</strong>
+                <span class="stock">In Stock</span>
+            </div>
+
+            <div class="sizes">
+
+                <h3>Available Sizes</h3>
+
+                <div id="sizeContainer">
+
+                </div>
+
+            </div>
+
+            <div class="colors">
+
+                <h3>Available Colors</h3>
+
+                <div id="colorContainer">
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <a
+                href="#"
+                class="btn primary"
+                id="orderBtn"
+                target="_blank"
+            >
+                Order on WhatsApp
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- Related Products -->
     <section class="section light">
-      <div class="toolbar">
-        <input type="search" id="searchInput" placeholder="Search products..." />
-        <select id="categoryFilter">
-          <option value="All">All Categories</option>
-          <option value="Women">Women</option>
-          <option value="Men">Men</option>
-          <option value="Ethnic Wear">Ethnic Wear</option>
-          <option value="Kids">Kids</option>
-        </select>
-      </div>
-      <div class="product-grid" id="productGrid"></div>
+
+        <p class="section-label">
+            Similar Products
+        </p>
+
+        <h2>
+            You May Also Like
+        </h2>
+
+        <div
+            class="product-grid"
+            id="relatedProducts"
+        >
+
+        </div>
+
     </section>
-  </main>
 
-  <footer>
-    <p>© 2026 Style Haven. All rights reserved.</p>
-  </footer>
+    <!-- Footer -->
+    <footer>
 
-  <script src="script.js"></script>
+        <p>
+            © 2026 Style Haven. All rights reserved.
+        </p>
+
+    </footer>
+
+    <!-- Existing Script -->
+    <script src="script.js"></script>
+
+    <!-- Product Details Script -->
+    <script src="product.js"></script>
+
 </body>
 </html>
