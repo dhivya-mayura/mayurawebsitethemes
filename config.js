@@ -8,7 +8,7 @@ const CONFIG = {
 
     // WhatsApp number in international format.
     // Example: 919876543210
-    whatsapp: "919342961479",
+    whatsapp: "919940621883",
 
     instagram: "",
     facebook: "",
