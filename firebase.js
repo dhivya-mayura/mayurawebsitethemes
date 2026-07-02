@@ -1,6 +1,9 @@
-// Firebase v10 (Module)
+// =====================================
+// Firebase Setup - Mayura Online
+// =====================================
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAnalytics, isSupported } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { getStorage } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
@@ -17,6 +20,22 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-export const storage = getStorage(app);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
+
+let analytics = null;
+isSupported().then((supported) => {
+    if (supported) {
+        analytics = getAnalytics(app);
+    }
+});
+
+// Make Firebase available to normal non-module scripts.
+window.firebaseApp = app;
+window.firebaseAuth = auth;
+window.firebaseDb = db;
+window.firebaseStorage = storage;
+window.firebaseAnalytics = analytics;
+
+window.dispatchEvent(new Event("firebase-ready"));

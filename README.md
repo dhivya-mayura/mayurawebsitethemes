@@ -47,3 +47,19 @@ For production, connect `js/firebase.js` with Firebase Authentication and Firest
 ## GitHub Pages
 
 Upload the full folder contents to your GitHub repository and enable GitHub Pages from the repository settings.
+
+
+## Firebase Update
+
+This version includes Firebase using browser CDN module imports in `firebase.js`.
+
+Firebase is loaded in these HTML files:
+
+- `index.html`
+- `products.html`
+- `product.html`
+- `wishlist.html`
+- `admin.html`
+- `login.html`
+
+The current website products are still loaded from `script.js`. Firebase is connected and ready for the next step: moving product data to Firestore and making the admin panel save products to Firebase.

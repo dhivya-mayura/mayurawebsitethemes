@@ -1,3 +1,10 @@
+// Firebase is loaded as a module in firebase.js.
+// Current admin logic remains demo/localStorage based until Firestore product management is enabled.
+
+window.addEventListener("firebase-ready", () => {
+    console.log("Firebase connected:", !!window.firebaseApp);
+});
+
 // =====================================
 // Style Haven Admin Demo Script
 // This version stores admin products in localStorage.
