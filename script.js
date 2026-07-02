@@ -45,7 +45,7 @@ if (menuBtn && navMenu) {
 }
 
 function getWhatsAppLink(productName = "your clothing collection") {
-  const phoneNumber = "919940621883"; // Replace with your WhatsApp Business number
+  const phoneNumber = "919999999999"; // Replace with your WhatsApp Business number
   const message = `Hi, I am interested in ${productName}.`;
   return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 }
