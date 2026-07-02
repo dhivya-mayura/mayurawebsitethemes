@@ -29,19 +29,40 @@ const navMenu = document.getElementById("navMenu");
 const menuBtn = document.getElementById("menuBtn");
 const productGrid = document.getElementById("productGrid");
 const whatsappBtn = document.getElementById("whatsappBtn");
+const searchInput = document.getElementById("searchInput");
+const categoryFilter = document.getElementById("categoryFilter");
 
-menuBtn.addEventListener("click", () => {
-  navMenu.classList.toggle("active");
-});
-
-navMenu.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => {
-    navMenu.classList.remove("active");
+if (menuBtn && navMenu) {
+  menuBtn.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
   });
-});
+
+  navMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navMenu.classList.remove("active");
+    });
+  });
+}
+
+function getWhatsAppLink(productName = "your clothing collection") {
+  const phoneNumber = "919999999999"; // Replace with your WhatsApp Business number
+  const message = `Hi, I am interested in ${productName}.`;
+  return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+}
 
 function renderProducts() {
-  productGrid.innerHTML = products
+  if (!productGrid) return;
+
+  const searchText = searchInput ? searchInput.value.toLowerCase() : "";
+  const selectedCategory = categoryFilter ? categoryFilter.value : "All";
+
+  const filteredProducts = products.filter((product) => {
+    const matchesSearch = product.name.toLowerCase().includes(searchText);
+    const matchesCategory = selectedCategory === "All" || product.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  productGrid.innerHTML = filteredProducts
     .map(
       (product) => `
         <article class="product-card">
@@ -50,18 +71,23 @@ function renderProducts() {
             <p>${product.category}</p>
             <h3>${product.name}</h3>
             <span class="price">${product.price}</span>
+            <a class="order-link" href="${getWhatsAppLink(product.name)}" target="_blank" rel="noopener">Order on WhatsApp</a>
           </div>
         </article>
       `
     )
     .join("");
+
+  if (filteredProducts.length === 0) {
+    productGrid.innerHTML = `<p class="empty-message">No products found.</p>`;
+  }
 }
 
-function setupWhatsApp() {
-  const phoneNumber = "919999999999";
-  const message = "Hi, I am interested in your clothing collection.";
-  whatsappBtn.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+if (searchInput) searchInput.addEventListener("input", renderProducts);
+if (categoryFilter) categoryFilter.addEventListener("change", renderProducts);
+
+if (whatsappBtn) {
+  whatsappBtn.href = getWhatsAppLink();
 }
 
 renderProducts();
-setupWhatsApp();

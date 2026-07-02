@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products | Style Haven</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="top-bar">
+    Free shipping on selected orders | Cash on delivery available
+  </div>
+
+  <header class="navbar">
+    <a href="index.html" class="logo">STYLE <span>HAVEN</span></a>
+
+    <nav id="navMenu">
+      <a href="index.html">Home</a>
+      <a href="index.html#collections">Collections</a>
+      <a href="products.html">Products</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <p class="section-label">Our Collection</p>
+      <h1>Products</h1>
+      <p>Browse our latest clothing styles and order directly through WhatsApp.</p>
+    </section>
+
+    <section class="section light">
+      <div class="toolbar">
+        <input type="search" id="searchInput" placeholder="Search products..." />
+        <select id="categoryFilter">
+          <option value="All">All Categories</option>
+          <option value="Women">Women</option>
+          <option value="Men">Men</option>
+          <option value="Ethnic Wear">Ethnic Wear</option>
+          <option value="Kids">Kids</option>
+        </select>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Style Haven. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

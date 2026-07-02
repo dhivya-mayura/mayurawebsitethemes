@@ -349,3 +349,64 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+.page-hero {
+  padding: 90px 7% 60px;
+  text-align: center;
+  background: #f8efe7;
+}
+
+.page-hero h1 {
+  font-size: 52px;
+  margin: 10px 0 14px;
+}
+
+.page-hero p:last-child {
+  color: #555;
+  font-size: 18px;
+}
+
+.toolbar {
+  max-width: 900px;
+  margin: 0 auto 35px;
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 15px;
+}
+
+.toolbar input,
+.toolbar select {
+  padding: 14px 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  background: white;
+}
+
+.order-link {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 10px 16px;
+  background: #111;
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+.empty-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #666;
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .page-hero h1 {
+    font-size: 38px;
+  }
+}
