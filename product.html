@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | Style Haven</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        Free Shipping on Selected Orders | Cash on Delivery Available
+    </div>
+
+    <!-- Navbar -->
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+            STYLE <span>HAVEN</span>
+        </a>
+
+        <nav id="navMenu">
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="index.html#collections">Collections</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+
+        <button id="menuBtn" class="menu-btn">
+            ☰
+        </button>
+
+    </header>
+
+    <!-- Breadcrumb -->
+
+    <section class="breadcrumb">
+
+        <a href="index.html">Home</a>
+
+        /
+
+        <a href="products.html">Products</a>
+
+        /
+
+        <span id="breadcrumbName">Product</span>
+
+    </section>
+
+    <!-- Product Details -->
+
+    <section class="product-details">
+
+        <!-- Image -->
+
+        <div class="product-gallery">
+
+            <img
+                id="productImage"
+                src=""
+                alt="Product Image">
+
+        </div>
+
+        <!-- Details -->
+
+        <div class="product-content">
+
+            <span
+                class="category-badge"
+                id="productCategory">
+            </span>
+
+            <h1 id="productName"></h1>
+
+            <span
+                class="price"
+                id="productPrice">
+            </span>
+
+            <p id="productDescription"></p>
+
+            <hr>
+
+            <div class="info-row">
+
+                <strong>Fabric :</strong>
+
+                <span id="productFabric"></span>
+
+            </div>
+
+            <div class="info-row">
+
+                <strong>Availability :</strong>
+
+                <span class="stock">
+                    In Stock
+                </span>
+
+            </div>
+
+            <!-- Sizes -->
+
+            <div class="sizes">
+
+                <h3>Available Sizes</h3>
+
+                <div id="sizeContainer"></div>
+
+            </div>
+
+            <!-- Colors -->
+
+            <div class="colors">
+
+                <h3>Available Colors</h3>
+
+                <div id="colorContainer"></div>
+
+            </div>
+
+            <br>
+
+            <a
+                href="#"
+                id="orderBtn"
+                class="btn primary"
+                target="_blank">
+                Order on WhatsApp
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- Related Products -->
+
+    <section class="section light">
+
+        <p class="section-label">
+            Similar Products
+        </p>
+
+        <h2>
+            You May Also Like
+        </h2>
+
+        <div
+            class="product-grid"
+            id="relatedProducts">
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            © 2026 Style Haven. All rights reserved.
+        </p>
+
+    </footer>
+
+    <!-- JavaScript -->
+
+    <script src="script.js"></script>
+    <script src="product.js"></script>
+
+</body>
+</html>
