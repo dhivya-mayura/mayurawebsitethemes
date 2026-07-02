@@ -3,54 +3,106 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Style Haven</title>
+  <title>Style Haven | Clothing Collection</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="top-bar">
+    Free shipping on selected orders | Cash on delivery available
+  </div>
 
   <header class="navbar">
-    <div class="logo">STYLE <span>HAVEN</span></div>
+    <a href="index.html" class="logo">STYLE <span>HAVEN</span></a>
 
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Shop</a>
-      <a href="#">Collections</a>
-      <a href="#">New Arrivals</a>
-      <a href="#">Contact</a>
+    <nav id="navMenu">
+      <a href="#home">Home</a>
+      <a href="#collections">Collections</a>
+      <a href="#new-arrivals">New Arrivals</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
     </nav>
 
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
   </header>
 
-  <section class="hero">
-    <div class="hero-content">
-      <p class="tagline">New Collection 2026</p>
-      <h1>Elevate Your Everyday Style</h1>
-      <p class="subtitle">
-        Discover modern, comfortable, and stylish clothing made for every occasion.
-      </p>
-
-      <div class="hero-buttons">
-        <button onclick="shopNow()">Shop Now</button>
-        <button class="outline">Explore Collection</button>
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <p class="eyebrow">New Collection 2026</p>
+        <h1>Elevate Your Everyday Style</h1>
+        <p class="hero-text">
+          Discover modern, comfortable, and stylish clothing designed for every occasion.
+        </p>
+        <div class="hero-actions">
+          <a href="#new-arrivals" class="btn primary">Shop Now</a>
+          <a href="#collections" class="btn secondary">Explore Collections</a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="features">
-    <div>
-      <h3>Free Shipping</h3>
-      <p>On selected orders</p>
-    </div>
-    <div>
-      <h3>Quality Guarantee</h3>
-      <p>Premium clothing</p>
-    </div>
-    <div>
-      <h3>Easy Returns</h3>
-      <p>Simple return policy</p>
-    </div>
-  </section>
+    <section class="features" aria-label="Store features">
+      <article>
+        <h3>Free Shipping</h3>
+        <p>On selected orders</p>
+      </article>
+      <article>
+        <h3>Quality Guarantee</h3>
+        <p>Premium fabrics and finishing</p>
+      </article>
+      <article>
+        <h3>Easy Ordering</h3>
+        <p>Order directly through WhatsApp</p>
+      </article>
+    </section>
+
+    <section class="section" id="collections">
+      <p class="section-label">Browse Our Range</p>
+      <h2>Shop by Category</h2>
+      <div class="category-grid">
+        <article class="category-card men">
+          <h3>Men</h3>
+        </article>
+        <article class="category-card women">
+          <h3>Women</h3>
+        </article>
+        <article class="category-card kids">
+          <h3>Kids</h3>
+        </article>
+        <article class="category-card ethnic">
+          <h3>Ethnic Wear</h3>
+        </article>
+      </div>
+    </section>
+
+    <section class="section light" id="new-arrivals">
+      <p class="section-label">Fresh Styles</p>
+      <h2>New Arrivals</h2>
+      <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <section class="about" id="about">
+      <div>
+        <p class="section-label">About Us</p>
+        <h2>Fashion for Every You</h2>
+        <p>
+          Style Haven brings handpicked clothing collections that combine comfort,
+          quality, and everyday elegance. We help customers discover outfits that feel
+          stylish, confident, and easy to wear.
+        </p>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <p class="section-label">Get in Touch</p>
+      <h2>Contact Us</h2>
+      <p>Interested in any product? Message us on WhatsApp and we will help you order.</p>
+      <a class="btn primary" id="whatsappBtn" href="#" target="_blank" rel="noopener">Order on WhatsApp</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Style Haven. All rights reserved.</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
