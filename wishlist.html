@@ -4,32 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wishlist | Style Haven</title>
-    <meta name="description" content="View your saved Style Haven wishlist products and order your favorite clothing items through WhatsApp.">
+    <meta name="description" content="View your saved Style Haven wishlist products.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="top-bar">
-        Free Shipping on Selected Orders | Cash on Delivery Available
-    </div>
-
+    <div class="top-bar">Free Shipping on Selected Orders | Cash on Delivery Available</div>
     <header class="navbar">
-        <a href="index.html" class="logo" aria-label="Style Haven Home">
-            STYLE <span>HAVEN</span>
-        </a>
-
-        <nav id="navMenu" aria-label="Main navigation">
-            <a href="wishlist.html" class="active">Wishlist <span id="wishlistCount" class="wishlist-count">0</span></a>
+        <a href="index.html" class="logo">STYLE <span>HAVEN</span></a>
+        <nav id="navMenu">
             <a href="index.html">Home</a>
+            <a href="wishlist.html" class="active">Wishlist <span id="wishlistCount" class="wishlist-count">0</span></a>
             <a href="products.html">Products</a>
             <a href="index.html#collections">Collections</a>
             <a href="index.html#about">About</a>
             <a href="index.html#contact">Contact</a>
         </nav>
-
-        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
-            ☰
-        </button>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
     </header>
 
     <main>
@@ -39,28 +29,21 @@
                 <h1>Your Wishlist</h1>
                 <p>Review your saved styles and order your favorites quickly.</p>
             </div>
-
             <a href="products.html" class="btn secondary">Continue Shopping</a>
         </section>
 
         <section class="wishlist-section">
             <div class="wishlist-toolbar">
                 <h2>Saved Items</h2>
-                <button class="clear-wishlist-btn" id="clearWishlistBtn" type="button">
-                    Clear Wishlist
-                </button>
+                <button class="clear-wishlist-btn" id="clearWishlistBtn" type="button">Clear Wishlist</button>
             </div>
-
             <div class="wishlist-list" id="wishlistGrid"></div>
         </section>
     </main>
 
-    <footer>
-        <p>© 2026 Style Haven. All rights reserved.</p>
-    </footer>
+    <footer><p>© 2026 Style Haven. All rights reserved.</p></footer>
 
-    <script type="module" src="firebase.js"></script>
     <script src="config.js"></script>
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>

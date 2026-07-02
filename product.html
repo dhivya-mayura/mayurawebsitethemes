@@ -4,21 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details | Style Haven</title>
-    <meta name="description" content="View product details, available sizes, colors, fabric, and order from Style Haven through WhatsApp.">
+    <meta name="description" content="View Style Haven product details and order through WhatsApp.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="top-bar">
-        Free Shipping on Selected Orders | Cash on Delivery Available
-    </div>
-
+    <div class="top-bar">Free Shipping on Selected Orders | Cash on Delivery Available</div>
     <header class="navbar">
-        <a href="index.html" class="logo" aria-label="Style Haven Home">
-            STYLE <span>HAVEN</span>
-        </a>
-
-        <nav id="navMenu" aria-label="Main navigation">
+        <a href="index.html" class="logo">STYLE <span>HAVEN</span></a>
+        <nav id="navMenu">
             <a href="index.html">Home</a>
             <a href="wishlist.html">Wishlist <span id="wishlistCount" class="wishlist-count">0</span></a>
             <a href="products.html" class="active">Products</a>
@@ -26,18 +19,13 @@
             <a href="index.html#about">About</a>
             <a href="index.html#contact">Contact</a>
         </nav>
-
-        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
-            ☰
-        </button>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
     </header>
 
     <main>
-        <section class="breadcrumb" aria-label="Breadcrumb">
-            <a href="index.html">Home</a>
-            <span>/</span>
-            <a href="products.html">Products</a>
-            <span>/</span>
+        <section class="breadcrumb">
+            <a href="index.html">Home</a><span>/</span>
+            <a href="products.html">Products</a><span>/</span>
             <span id="breadcrumbName">Product</span>
         </section>
 
@@ -46,25 +34,16 @@
                 <div class="fg-main-image">
                     <img id="productImage" src="" alt="Selected product image">
                 </div>
-
                 <div class="fg-thumbnail-grid" id="productThumbs"></div>
             </div>
 
             <aside class="fg-product-summary">
                 <span class="category-badge" id="productCategory"></span>
-
                 <h1 id="productName"></h1>
-
                 <p class="fg-subtitle" id="productSubtitle"></p>
-
                 <span class="price detail-price" id="productPrice"></span>
-
                 <p class="tax-note">Inclusive of all taxes. Shipping calculated at checkout.</p>
-
-                <button class="detail-wishlist-btn" id="detailWishlistBtn" type="button">
-                    ♡ Add to Wishlist
-                </button>
-
+                <button class="detail-wishlist-btn" id="detailWishlistBtn" type="button">♡ Add to Wishlist</button>
                 <div class="low-stock">Only a few left. Order soon!</div>
 
                 <div class="fg-option-block">
@@ -81,9 +60,7 @@
                 </div>
 
                 <div class="fg-actions">
-                    <a href="#" id="orderBtn" class="btn primary" target="_blank" rel="noopener">
-                        Order on WhatsApp
-                    </a>
+                    <a href="#" id="orderBtn" class="btn primary" target="_blank" rel="noopener">Order on WhatsApp</a>
                     <a href="products.html" class="btn secondary">Continue Shopping</a>
                 </div>
 
@@ -97,48 +74,20 @@
 
         <section class="premium-product-details">
             <h2>Product Details</h2>
-
             <p class="premium-detail-description" id="productDescription"></p>
 
             <div class="premium-detail-table">
-                <div>
-                    <strong>Display Color</strong>
-                    <span id="productDisplayColor"></span>
-                </div>
-
-                <div>
-                    <strong>Wash Care</strong>
-                    <span>Gentle Hand Wash</span>
-                </div>
-
-                <div>
-                    <strong>Composition</strong>
-                    <span id="productComposition"></span>
-                </div>
-
-                <div>
-                    <strong>Print Technique</strong>
-                    <span>Digital</span>
-                </div>
+                <div><strong>Display Color</strong><span id="productDisplayColor"></span></div>
+                <div><strong>Wash Care</strong><span>Gentle Hand Wash</span></div>
+                <div><strong>Composition</strong><span id="productComposition"></span></div>
+                <div><strong>Print Technique</strong><span>Digital</span></div>
             </div>
 
             <div class="premium-disclaimer">
-                <p>
-                    <strong>DISCLAIMER:</strong>
-                    Garments crafted using traditional dyeing and printing techniques, particularly in darker or richly pigmented shades, may transfer colour onto light-coloured fabrics, upholstery, or other surfaces. This is an inherent characteristic of richly dyed textiles and may occur when exposed to moisture, heat, or friction.
-                </p>
-
-                <p>
-                    We recommend washing dark-coloured garments separately in cold water only and avoiding contact with light surfaces, as rubbing may result in colour transfer.
-                </p>
-
-                <p>
-                    Subtle variations in print, shade, and stitching are inherent to the handmade process and are not defects.
-                </p>
-
-                <p>
-                    Product colours may vary slightly depending on lighting, screen settings, photography conditions, and background tones.
-                </p>
+                <p><strong>DISCLAIMER:</strong> Garments crafted using traditional dyeing and printing techniques may transfer colour onto light-coloured fabrics, upholstery, or other surfaces.</p>
+                <p>We recommend washing dark-coloured garments separately in cold water only.</p>
+                <p>Subtle variations in print, shade, and stitching are inherent to the handmade process and are not defects.</p>
+                <p>Product colours may vary slightly depending on lighting, screen settings, and photography conditions.</p>
             </div>
         </section>
 
@@ -149,12 +98,9 @@
         </section>
     </main>
 
-    <footer>
-        <p>© 2026 Style Haven. All rights reserved.</p>
-    </footer>
+    <footer><p>© 2026 Style Haven. All rights reserved.</p></footer>
 
     <script src="config.js"></script>
-    <script type="module" src="script.js"></script>
     <script type="module" src="product.js"></script>
 </body>
 </html>

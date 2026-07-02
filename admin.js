@@ -1,15 +1,27 @@
-// Firebase is loaded as a module in firebase.js.
-// Current admin logic remains demo/localStorage based until Firestore product management is enabled.
-
-window.addEventListener("firebase-ready", () => {
-    console.log("Firebase connected:", !!window.firebaseApp);
-});
-
 // =====================================
-// Style Haven Admin Demo Script
-// This version stores admin products in localStorage.
-// Later, this can be connected to Firebase Firestore.
+// Style Haven - Firebase First Admin
+// Firebase Auth + Firestore + Storage URL support
 // =====================================
+
+import {
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+    collection,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    doc,
+    getDocs,
+    serverTimestamp,
+    query,
+    orderBy
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import { auth, db } from "./firebase.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     setupAdminLogin();
@@ -20,39 +32,50 @@ function setupAdminLogin() {
     const loginForm = document.getElementById("loginForm");
     if (!loginForm) return;
 
-    loginForm.addEventListener("submit", event => {
+    onAuthStateChanged(auth, user => {
+        if (user) {
+            window.location.href = "admin.html";
+        }
+    });
+
+    loginForm.addEventListener("submit", async event => {
         event.preventDefault();
 
         const email = document.getElementById("loginEmail").value.trim();
         const password = document.getElementById("loginPassword").value.trim();
         const message = document.getElementById("loginMessage");
 
-        if (!email || !password) {
-            message.textContent = "Please enter email and password.";
-            return;
+        try {
+            message.textContent = "Logging in...";
+            await signInWithEmailAndPassword(auth, email, password);
+            window.location.href = "admin.html";
+        } catch (error) {
+            console.error("Login failed:", error);
+            message.textContent = "Login failed. Check your Firebase Authentication user.";
         }
-
-        localStorage.setItem("styleHavenAdminLoggedIn", "true");
-        window.location.href = "admin.html";
     });
 }
 
 function setupAdminDashboard() {
     const productForm = document.getElementById("productForm");
-    const list = document.getElementById("adminProductList");
+    const productList = document.getElementById("adminProductList");
 
-    if (!productForm || !list) return;
+    if (!productForm || !productList) return;
 
-    if (localStorage.getItem("styleHavenAdminLoggedIn") !== "true") {
-        window.location.href = "login.html";
-        return;
-    }
+    onAuthStateChanged(auth, user => {
+        if (!user) {
+            window.location.href = "login.html";
+            return;
+        }
+
+        renderAdminProducts();
+    });
 
     const logoutBtn = document.getElementById("logoutBtn");
     if (logoutBtn) {
-        logoutBtn.addEventListener("click", event => {
+        logoutBtn.addEventListener("click", async event => {
             event.preventDefault();
-            localStorage.removeItem("styleHavenAdminLoggedIn");
+            await signOut(auth);
             window.location.href = "login.html";
         });
     }
@@ -62,104 +85,144 @@ function setupAdminDashboard() {
         resetBtn.addEventListener("click", resetAdminForm);
     }
 
-    productForm.addEventListener("submit", event => {
+    productForm.addEventListener("submit", async event => {
         event.preventDefault();
-        saveAdminProduct();
+        await saveAdminProduct();
     });
-
-    renderAdminProducts();
 }
 
-function getAdminProducts() {
-    return JSON.parse(localStorage.getItem("styleHavenAdminProducts") || "[]");
-}
-
-function saveAdminProducts(items) {
-    localStorage.setItem("styleHavenAdminProducts", JSON.stringify(items));
-}
-
-function saveAdminProduct() {
+async function saveAdminProduct() {
     const message = document.getElementById("adminMessage");
-    const products = getAdminProducts();
-
     const existingId = document.getElementById("productId").value;
+
+    const imageInput = document.getElementById("adminProductImage").value.trim();
+    const additionalImages = csvToArray(document.getElementById("adminProductImages")?.value || "");
+
+    const images = [imageInput, ...additionalImages].filter(Boolean);
+
     const product = {
-        id: existingId ? Number(existingId) : Date.now(),
         name: document.getElementById("adminProductName").value.trim(),
         category: document.getElementById("adminProductCategory").value,
         price: document.getElementById("adminProductPrice").value.trim(),
-        image: document.getElementById("adminProductImage").value.trim(),
+        image: imageInput,
+        images,
         short: document.getElementById("adminProductShort").value.trim(),
         description: document.getElementById("adminProductDescription").value.trim(),
         fabric: document.getElementById("adminProductFabric").value.trim(),
-        sizes: document.getElementById("adminProductSizes").value.split(",").map(item => item.trim()).filter(Boolean),
-        colors: document.getElementById("adminProductColors").value.split(",").map(item => item.trim()).filter(Boolean)
+        sizes: csvToArray(document.getElementById("adminProductSizes").value),
+        colors: csvToArray(document.getElementById("adminProductColors").value),
+        stock: true,
+        featured: false,
+        updatedAt: serverTimestamp()
     };
 
-    const index = products.findIndex(item => item.id === product.id);
-
-    if (index >= 0) {
-        products[index] = product;
-    } else {
-        products.push(product);
+    if (!product.name || !product.price || !product.image) {
+        message.textContent = "Please fill product name, price, and image URL.";
+        return;
     }
 
-    saveAdminProducts(products);
-    resetAdminForm();
-    renderAdminProducts();
+    try {
+        message.textContent = "Saving product...";
 
-    if (message) {
+        if (existingId) {
+            await updateDoc(doc(db, "products", existingId), product);
+        } else {
+            product.createdAt = serverTimestamp();
+            await addDoc(collection(db, "products"), product);
+        }
+
+        resetAdminForm();
+        await renderAdminProducts();
         message.textContent = "Product saved successfully.";
+    } catch (error) {
+        console.error("Product save failed:", error);
+        message.textContent = "Unable to save product. Check Firestore rules.";
     }
 }
 
-function renderAdminProducts() {
+async function renderAdminProducts() {
     const list = document.getElementById("adminProductList");
     if (!list) return;
 
-    const products = getAdminProducts();
+    list.innerHTML = `<p class="empty-state">Loading products...</p>`;
 
-    list.innerHTML = products.length
-        ? products.map(product => `
-            <article class="admin-product-row">
-                <img src="${product.image}" alt="${product.name}">
-                <div>
-                    <h3>${product.name}</h3>
-                    <p>${product.category} | ${product.price}</p>
-                </div>
-                <div class="admin-row-actions">
-                    <button type="button" onclick="editAdminProduct(${product.id})">Edit</button>
-                    <button type="button" onclick="deleteAdminProduct(${product.id})">Delete</button>
-                </div>
-            </article>
-        `).join("")
-        : `<p class="empty-state">No admin products added yet.</p>`;
+    try {
+        const productsQuery = query(collection(db, "products"), orderBy("createdAt", "desc"));
+        const snapshot = await getDocs(productsQuery);
+
+        if (snapshot.empty) {
+            list.innerHTML = `<p class="empty-state">No products added yet.</p>`;
+            return;
+        }
+
+        list.innerHTML = snapshot.docs.map(item => {
+            const product = item.data();
+
+            return `
+                <article class="admin-product-row">
+                    <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}">
+                    <div>
+                        <h3>${escapeHtml(product.name)}</h3>
+                        <p>${escapeHtml(product.category)} | ${escapeHtml(product.price)}</p>
+                    </div>
+                    <div class="admin-row-actions">
+                        <button type="button" data-edit-id="${item.id}">Edit</button>
+                        <button type="button" data-delete-id="${item.id}">Delete</button>
+                    </div>
+                </article>
+            `;
+        }).join("");
+
+        list.querySelectorAll("[data-edit-id]").forEach(button => {
+            button.addEventListener("click", () => editAdminProduct(button.dataset.editId, snapshot));
+        });
+
+        list.querySelectorAll("[data-delete-id]").forEach(button => {
+            button.addEventListener("click", () => deleteAdminProduct(button.dataset.deleteId));
+        });
+    } catch (error) {
+        console.error("Unable to load admin products:", error);
+        list.innerHTML = `<p class="empty-state">Unable to load products. Check Firestore rules.</p>`;
+    }
 }
 
-function editAdminProduct(id) {
-    const product = getAdminProducts().find(item => item.id === id);
-    if (!product) return;
+function editAdminProduct(id, snapshot) {
+    const found = snapshot.docs.find(item => item.id === id);
+    if (!found) return;
 
-    document.getElementById("productId").value = product.id;
-    document.getElementById("adminProductName").value = product.name;
-    document.getElementById("adminProductCategory").value = product.category;
-    document.getElementById("adminProductPrice").value = product.price;
-    document.getElementById("adminProductImage").value = product.image;
-    document.getElementById("adminProductShort").value = product.short;
-    document.getElementById("adminProductDescription").value = product.description;
-    document.getElementById("adminProductFabric").value = product.fabric;
-    document.getElementById("adminProductSizes").value = product.sizes.join(", ");
-    document.getElementById("adminProductColors").value = product.colors.join(", ");
+    const product = found.data();
+
+    document.getElementById("productId").value = id;
+    document.getElementById("adminProductName").value = product.name || "";
+    document.getElementById("adminProductCategory").value = product.category || "Women";
+    document.getElementById("adminProductPrice").value = product.price || "";
+    document.getElementById("adminProductImage").value = product.image || "";
+    const extraImages = Array.isArray(product.images)
+        ? product.images.filter(image => image !== product.image)
+        : [];
+    const extraInput = document.getElementById("adminProductImages");
+    if (extraInput) extraInput.value = extraImages.join(", ");
+
+    document.getElementById("adminProductShort").value = product.short || "";
+    document.getElementById("adminProductDescription").value = product.description || "";
+    document.getElementById("adminProductFabric").value = product.fabric || "";
+    document.getElementById("adminProductSizes").value = Array.isArray(product.sizes) ? product.sizes.join(", ") : "";
+    document.getElementById("adminProductColors").value = Array.isArray(product.colors) ? product.colors.join(", ") : "";
 
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function deleteAdminProduct(id) {
+async function deleteAdminProduct(id) {
     const confirmed = confirm("Delete this product?");
     if (!confirmed) return;
 
-    saveAdminProducts(getAdminProducts().filter(item => item.id !== id));
-    renderAdminProducts();
+    try {
+        await deleteDoc(doc(db, "products", id));
+        await renderAdminProducts();
+    } catch (error) {
+        console.error("Product delete failed:", error);
+        alert("Unable to delete product. Check Firestore rules.");
+    }
 }
 
 function resetAdminForm() {
@@ -168,4 +231,23 @@ function resetAdminForm() {
 
     const productId = document.getElementById("productId");
     if (productId) productId.value = "";
+
+    const message = document.getElementById("adminMessage");
+    if (message) message.textContent = "";
+}
+
+function csvToArray(value) {
+    return value
+        .split(",")
+        .map(item => item.trim())
+        .filter(Boolean);
+}
+
+function escapeHtml(value) {
+    return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
 }

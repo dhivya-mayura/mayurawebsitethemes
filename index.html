@@ -8,29 +8,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="top-bar">
-        Free Shipping on Selected Orders | Cash on Delivery Available
-    </div>
+    <div class="top-bar">Free Shipping on Selected Orders | Cash on Delivery Available</div>
 
     <header class="navbar">
-        <a href="index.html" class="logo" aria-label="Style Haven Home">
-            STYLE <span>HAVEN</span>
-        </a>
-
+        <a href="index.html" class="logo" aria-label="Style Haven Home">STYLE <span>HAVEN</span></a>
         <nav id="navMenu" aria-label="Main navigation">
             <a href="index.html" class="active">Home</a>
             <a href="wishlist.html">Wishlist <span id="wishlistCount" class="wishlist-count">0</span></a>
             <a href="products.html">Products</a>
-            <a href="#collections">Collections</a>
-            <a href="#new-arrivals">New Arrivals</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+            <a href="index.html#collections" class="active">Collections</a>
+            <a href="index.html#about" class="active">About</a>
+            <a href="index.html#contact" class="active">Contact</a>
         </nav>
-
-        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
-            ☰
-        </button>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
     </header>
 
     <main>
@@ -38,10 +28,7 @@
             <div class="hero-content">
                 <p class="eyebrow">New Collection 2026</p>
                 <h1>Elevate Your Everyday Style</h1>
-                <p class="hero-text">
-                    Discover modern, comfortable, and stylish clothing designed for every occasion.
-                </p>
-
+                <p class="hero-text">Discover modern, comfortable, and stylish clothing designed for every occasion.</p>
                 <div class="hero-actions">
                     <a href="products.html" class="btn primary">Shop Now</a>
                     <a href="#collections" class="btn secondary">Explore Collections</a>
@@ -50,86 +37,45 @@
         </section>
 
         <section class="features" aria-label="Store benefits">
-            <article>
-                <div class="feature-icon" aria-hidden="true">🚚</div>
-                <h3>Free Shipping</h3>
-                <p>On selected orders</p>
-            </article>
-
-            <article>
-                <div class="feature-icon" aria-hidden="true">✨</div>
-                <h3>Premium Quality</h3>
-                <p>Carefully selected fabrics</p>
-            </article>
-
-            <article>
-                <div class="feature-icon" aria-hidden="true">💬</div>
-                <h3>WhatsApp Ordering</h3>
-                <p>Quick and easy checkout</p>
-            </article>
+            <article><div class="feature-icon">🚚</div><h3>Free Shipping</h3><p>On selected orders</p></article>
+            <article><div class="feature-icon">✨</div><h3>Premium Quality</h3><p>Carefully selected fabrics</p></article>
+            <article><div class="feature-icon">💬</div><h3>WhatsApp Ordering</h3><p>Quick and easy checkout</p></article>
         </section>
 
         <section class="section" id="collections">
             <p class="section-label">Browse Our Range</p>
             <h2>Shop by Category</h2>
-
             <div class="category-grid">
-                <a class="category-card men" href="products.html?category=Men" aria-label="Shop Men collection">
-                    <h3>Men</h3>
-                </a>
-
-                <a class="category-card women" href="products.html?category=Women" aria-label="Shop Women collection">
-                    <h3>Women</h3>
-                </a>
-
-                <a class="category-card kids" href="products.html?category=Kids" aria-label="Shop Kids collection">
-                    <h3>Kids</h3>
-                </a>
-
-                <a class="category-card ethnic" href="products.html?category=Ethnic Wear" aria-label="Shop Ethnic Wear collection">
-                    <h3>Ethnic Wear</h3>
-                </a>
+                <a class="category-card men" href="products.html?category=Men"><h3>Men</h3></a>
+                <a class="category-card women" href="products.html?category=Women"><h3>Women</h3></a>
+                <a class="category-card kids" href="products.html?category=Kids"><h3>Kids</h3></a>
+                <a class="category-card ethnic" href="products.html?category=Ethnic Wear"><h3>Ethnic Wear</h3></a>
             </div>
         </section>
 
         <section class="section light" id="new-arrivals">
             <p class="section-label">Fresh Styles</p>
             <h2>New Arrivals</h2>
-
             <div class="product-grid" id="newArrivalsGrid"></div>
         </section>
 
         <section class="about" id="about">
-            <div>
-                <p class="section-label">About Us</p>
-                <h2>Fashion For Every You</h2>
-                <p>
-                    Style Haven offers carefully selected clothing collections that combine comfort,
-                    elegance, and affordability. Whether you are shopping for casual, festive, or
-                    everyday wear, we have something for everyone.
-                </p>
-            </div>
+            <p class="section-label">About Us</p>
+            <h2>Fashion For Every You</h2>
+            <p>Style Haven offers carefully selected clothing collections that combine comfort, elegance, and affordability.</p>
         </section>
 
         <section class="section contact" id="contact">
             <p class="section-label">Contact Us</p>
             <h2>Get In Touch</h2>
-            <p>
-                Have questions about a product? Click below to chat with us directly on WhatsApp.
-            </p>
-
-            <a href="#" id="whatsappBtn" class="btn primary" target="_blank" rel="noopener">
-                Chat on WhatsApp
-            </a>
+            <p>Have questions about a product? Click below to chat with us directly on WhatsApp.</p>
+            <a href="#" id="whatsappBtn" class="btn primary" target="_blank" rel="noopener">Chat on WhatsApp</a>
         </section>
     </main>
 
-    <footer>
-        <p>© 2026 Style Haven. All rights reserved.</p>
-    </footer>
+    <footer><p>© 2026 Style Haven. All rights reserved.</p></footer>
 
-    <script type="module" src="firebase.js"></script>
     <script src="config.js"></script>
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>

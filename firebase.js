@@ -18,24 +18,16 @@ const firebaseConfig = {
     measurementId: "G-13MC4Y0ZM6"
 };
 
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const storage = getStorage(app);
 
-const auth = getAuth(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
-
-let analytics = null;
 isSupported().then((supported) => {
-    if (supported) {
-        analytics = getAnalytics(app);
-    }
+    if (supported) getAnalytics(app);
 });
 
-// Make Firebase available to normal non-module scripts.
 window.firebaseApp = app;
 window.firebaseAuth = auth;
 window.firebaseDb = db;
 window.firebaseStorage = storage;
-window.firebaseAnalytics = analytics;
-
-window.dispatchEvent(new Event("firebase-ready"));

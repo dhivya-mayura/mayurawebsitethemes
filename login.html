@@ -8,28 +8,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <main class="auth-page">
         <section class="auth-card">
             <a href="index.html" class="logo auth-logo">STYLE <span>HAVEN</span></a>
-
             <p class="section-label">Admin Access</p>
             <h1>Login</h1>
-            <p class="auth-note">Use your admin credentials to manage products.</p>
+            <p class="auth-note">Use the Firebase Authentication admin account.</p>
 
             <form id="loginForm" class="auth-form">
-                <label>
-                    Email
-                    <input type="email" id="loginEmail" placeholder="admin@example.com" required>
-                </label>
-
-                <label>
-                    Password
-                    <input type="password" id="loginPassword" placeholder="Enter password" required>
-                </label>
-
+                <label>Email <input type="email" id="loginEmail" placeholder="admin@example.com" required></label>
+                <label>Password <input type="password" id="loginPassword" placeholder="Enter password" required></label>
                 <button class="btn primary" type="submit">Login</button>
-
                 <p id="loginMessage" class="form-message"></p>
             </form>
 
@@ -37,7 +26,6 @@
         </section>
     </main>
 
-    <script type="module" src="firebase.js"></script>
-    <script src="admin.js"></script>
+    <script type="module" src="admin.js"></script>
 </body>
 </html>

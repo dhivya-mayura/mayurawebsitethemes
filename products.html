@@ -4,21 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products | Style Haven</title>
-    <meta name="description" content="Browse Style Haven clothing products by category, including men, women, kids, and ethnic wear.">
+    <meta name="description" content="Browse Style Haven clothing products by category.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="top-bar">
-        Free Shipping on Selected Orders | Cash on Delivery Available
-    </div>
-
+    <div class="top-bar">Free Shipping on Selected Orders | Cash on Delivery Available</div>
     <header class="navbar">
-        <a href="index.html" class="logo" aria-label="Style Haven Home">
-            STYLE <span>HAVEN</span>
-        </a>
-
-        <nav id="navMenu" aria-label="Main navigation">
+        <a href="index.html" class="logo">STYLE <span>HAVEN</span></a>
+        <nav id="navMenu">
             <a href="index.html">Home</a>
             <a href="wishlist.html">Wishlist <span id="wishlistCount" class="wishlist-count">0</span></a>
             <a href="products.html" class="active">Products</a>
@@ -26,10 +19,7 @@
             <a href="index.html#about">About</a>
             <a href="index.html#contact">Contact</a>
         </nav>
-
-        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
-            ☰
-        </button>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
     </header>
 
     <main>
@@ -40,24 +30,20 @@
         </section>
 
         <section class="section">
-            <div class="filter-bar" id="filterBar" aria-label="Product category filters">
+            <div class="filter-bar" id="filterBar">
                 <button class="filter-btn active" data-category="All">All</button>
                 <button class="filter-btn" data-category="Men">Men</button>
                 <button class="filter-btn" data-category="Women">Women</button>
                 <button class="filter-btn" data-category="Kids">Kids</button>
                 <button class="filter-btn" data-category="Ethnic Wear">Ethnic Wear</button>
             </div>
-
             <div class="product-grid" id="productGrid"></div>
         </section>
     </main>
 
-    <footer>
-        <p>© 2026 Style Haven. All rights reserved.</p>
-    </footer>
+    <footer><p>© 2026 Style Haven. All rights reserved.</p></footer>
 
-    <script type="module" src="firebase.js"></script>
     <script src="config.js"></script>
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>

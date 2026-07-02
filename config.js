@@ -1,16 +1,12 @@
 // =====================================
-// Mayuraonline Configuration
-// Edit this file only for store settings.
+// Store Configuration
 // =====================================
 
 const CONFIG = {
-    storeName: "Mayura",
-
-    // WhatsApp number in international format.
-    // Example: 919876543210
-    whatsapp: "919940621883",
-
+    storeName: "Style Haven",
+    whatsapp: "919999999999",
+    currency: "₹",
+    email: "",
     instagram: "",
-    facebook: "",
-    email: ""
+    facebook: ""
 };

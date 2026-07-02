@@ -1,65 +1,94 @@
-# Style Haven
+# Style Haven - Clean Firebase-First Version
 
-A clean responsive fashion e-commerce website.
+Upload all files directly to your GitHub repository root.
+
+## Important
+
+This version has no hardcoded product array. Products load only from Firebase Firestore.
 
 ## Files
 
-- `index.html` - Homepage
-- `products.html` - Product listing page
-- `product.html` - Product details page
-- `wishlist.html` - Wishlist page
-- `login.html` - Admin login page
-- `admin.html` - Admin dashboard demo
+- index.html
+- products.html
+- product.html
+- wishlist.html
+- login.html
+- admin.html
+- style.css
+- config.js
+- firebase.js
+- script.js
+- product.js
+- admin.js
 
-## Folders
+## Firebase setup
 
-- `css/style.css` - Main stylesheet
-- `js/config.js` - Store settings
-- `js/script.js` - Main website JavaScript
-- `js/product.js` - Product detail JavaScript
-- `js/admin.js` - Admin dashboard demo JavaScript
-- `js/firebase.js` - Firebase setup placeholder
-- `images/` - Add local images here
-- `data/` - Future product JSON files
+1. Firebase Console → Authentication → Sign-in method
+2. Enable Email/Password
+3. Authentication → Users → Add user
+4. Use that email/password on login.html
+5. Firestore Database → Create database
+6. Use the rules below while testing
 
-## Edit WhatsApp Number
-
-Open:
+## Firestore rules for testing
 
 ```text
-js/config.js
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}
 ```
 
-Change:
+## Firestore collection
 
-```javascript
+Products are saved in:
+
+```text
+products
+```
+
+## Product fields
+
+```text
+name
+category
+price
+image
+images
+short
+description
+fabric
+sizes
+colors
+stock
+featured
+createdAt
+updatedAt
+```
+
+## Edit WhatsApp number
+
+Open config.js and change:
+
+```js
 whatsapp: "919999999999"
 ```
 
-Use international format without `+`, spaces, or dashes.
+Use international format, no + sign.
 
-## Admin Login
+## How to verify
 
-Current admin login is demo-only. Any email and password will work and products are stored in `localStorage`.
+Open browser console and test:
 
-For production, connect `js/firebase.js` with Firebase Authentication and Firestore.
+```js
+window.firebaseApp
+window.firebaseDb
+```
 
-## GitHub Pages
-
-Upload the full folder contents to your GitHub repository and enable GitHub Pages from the repository settings.
-
-
-## Firebase Update
-
-This version includes Firebase using browser CDN module imports in `firebase.js`.
-
-Firebase is loaded in these HTML files:
-
-- `index.html`
-- `products.html`
-- `product.html`
-- `wishlist.html`
-- `admin.html`
-- `login.html`
-
-The current website products are still loaded from `script.js`. Firebase is connected and ready for the next step: moving product data to Firestore and making the admin panel save products to Firebase.
+Both should return objects.
